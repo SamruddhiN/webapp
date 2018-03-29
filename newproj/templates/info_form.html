@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title> Pytest Web-app </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+   <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/css/templatemo-style.css">  -->
+    <link rel="stylesheet" href="/static/css/upload_submit.css">
+    <script src="/static/js_home/jquery.js"></script>
+    <script src="/static/js_home/bootstrap.min.js"></script>
+    <script src="/static/js_home/jquery.singlePageNav.min.js"></script>
+    <script src="/static/js_home/typed.js"></script>
+    <script src="/static/js_home/custom.js"></script>
+    <!--  <script src="/static/scripts/gs-form-handler.js"></script> -->
+    <!--<script src="/static/scripts/jquery.mb.YTPlayer.js"></script> -->
+    <!--
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script>
+
+            var script_url = "https://script.google.com/a/ansys.com/macros/s/AKfycbwrOd0w0WH-_4Csr1td9aG_C88XO77sSIQGeL7gATZ8q86NQmi6/exec";
+
+      // Make an AJAX call to Google Script
+      function insert_value() {
+
+
+          var pull_req = $("gform#pull_req").val();
+        var user_story= $("#user_story").val();
+
+
+        var url = script_url+"?callback=ctrlq&pull_req="+pull_req+"&user_story="+user_story+"&action=insert";
+
+
+        var request = jQuery.ajax({
+          crossDomain: true,
+          url: url ,
+          method: "GET",
+          dataType: "jsonp"
+        });
+
+      }
+     </script>
+         <script type="text/javascript">
+        function showHide() {
+            var div = document.getElementById('thankyou_message');
+            if (div.style.display == 'none') {
+                document.getElementById('gform').style.display = 'none'; // hide form
+                document.getElementById('thankyou_message').style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+     
+ }
+
+        </script>
+
+
+    -->
+
+   
+</head>
+<body id="top">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div classs="row">
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header -->
+    <!-- start navigation -->
+    <nav class="navbar navbar-default templatemo-nav" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="{{ url_for('home')}}">
+                <img src="/static/images/Ansys-logo.png" class="navbar-brand">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- end navigation -->
+    <!--Pull request form-->
+    <div class="main-content">
+
+        <!-- You only need this form and the form-basic.css -->
+
+        <form class="form-basic" id="gform" action="{{ url_for('dashboard') }}" method="post">
+
+            <!-- <div class="form-title-row">
+                 <h1>Please, enter the information below.</h1>
+             </div>
+                 -->
+            <aside>
+                <p>
+                    Please use the <b><em>Information Form</em></b>
+                    to get started.
+                </p>
+            </aside>
+
+            <div class="form-row">
+                <label>
+                    <span>Pull Request</span>
+                    <input id="pull_req" name="pull_req" type="url"
+                           list="defaultURLs" placeholder="Please, type/paste the url.">
+
+                    <datalist id="defaultURLs">
+                        <option value="http://www.google.com/">
+                        <option value="http://www.microsoft.com/">
+                        <option value="https://www.mozilla.org/">
+                        <option value="http://w3.org/">
+                    </datalist>
+                    <!--
+                    <input type="text" name="pull_req" placeholder="Please, paste the link.">
+                    <span id="url-invalid" style="display:none">
+                        Must be a valid url
+                    </span>
+                    -->
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Reviewer</span>
+                    <select name="reviewer">
+                        <option>Werner Thiel</option>
+                        <option>Xin Xu</option>
+                        <option>Samruddhi Naik</option>
+                    </select>
+                </label>
+            </div>
+
+
+
+            <div class="form-row">
+                <label>
+                    <span>User Story</span>
+                    <input type="text" name="user_story" placeholder="Please, type/paste the url.">
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Solver-Type</span>
+                </label>
+                <div class="form-radio-buttons">
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>SYZ</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Near field</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Far field</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Impedence</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Xtalk</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>DCIR</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>AC</span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label><span>Design Document</span></label>
+                <div>
+                    <div class="form-attach">
+                        <input class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" type="file" multiple="">
+                        <small id="fileHelp" class="form-text text-muted">Please, attach if you have any design document</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label><span>Sufficient source code comments</span></label>
+                <div class="form-radio-buttons">
+                    <label>
+                        <input type="checkbox" name="checkbox" checked>
+                        <span>ABC</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label><span>Technical document</span></label>
+                <div class="form-radio-buttons">
+                    <label>
+                        <input type="checkbox" name="checkbox" checked>
+                        <span>ABC</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Solution Type for QA Testing</span>
+                </label>
+                <div class="form-radio-buttons">
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>SYZ</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Near field</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Far field</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Impedence</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Xtalk</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>DCIR</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>AC</span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label><span>S parameter reset required?</span></label>
+                <div class="form-radio-buttons">
+
+                    <div>
+                        <label>
+                            <input type="radio" name="radio">
+                            <span>Yes</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="radio" name="radio">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label><span>Far field data reset required?</span></label>
+                <div class="form-radio-buttons">
+
+                    <div>
+                        <label>
+                            <input type="radio" name="radio">
+                            <span>Yes</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="radio" name="radio">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Comments</span>
+                    <textarea name="textarea"></textarea>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <button class="button-success pure-button button-xlarge" formtarget="_blank">
+                    <i class="fa fa-paper-plane"></i>&nbsp;Send
+                </button>
+
+            </div>
+
+        </form>
+    </div>
+        <!-- Customise the Thankyou Message People See when they submit the form: -->
+        <div style="display:none;" id="thankyou_message">
+            <h2>
+                <em>Thank you</em> for submitting the information.
+               You can check your dashboard for the progress!
+            </h2>
+        </div>
+   
+</body>
+</html>
+
+
+<!-- <input type="button" id="b1" onClick="insert_value()" value="Insert" /> -->
+<!-- <input type="button" onclick="read_value()" value="Read" />
+     <input type="button" onclick="update_value()" value="Update" />
+     <input type="button" onclick="delete_value()" value="Delete" />
+        <a href="https://docs.google.com/spreadsheets/d/1a1Go_JauLa4tDPzYyCxomcKwCD9IlbdiVTGkWOc0K4g/edit#gid=0" target="_blank">Click here to open Spread Sheet </a>
+    </div>
+-->
+<!--End Pull requert-->
+<!--
+    <form action="{{ url_for('uploader') }}" method="POST"
+          enctype="multipart/form-data">
+        <input type="file" name="file[]" multiple="" />
+        <input type="submit" />
+    </form>
+    -->
+<!-- Submit the Form to Google Using "AJAX"
+<script data-cfasync="false" type="text/javascript"
+        src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+<!-- <script data-cfasync="false" type="text/javascript"
+src="/form-submission-handler.js"></script>
+    
+    <script src="/static/scripts/gs_form1.js"></script>
+    
+     -->
+
+
+<!-- END -->

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title> Web-app </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="/static/css/templatemo-style.css">  -->
+    <link rel="stylesheet" href="/static/css/upload_submit.css">
+    <script src="/static/js_home/jquery.js"></script>
+    <script src="/static/js_home/bootstrap.min.js"></script>
+    <script src="/static/js_home/jquery.singlePageNav.min.js"></script>
+    <script src="/static/js_home/typed.js"></script>
+    <script src="/static/js_home/custom.js"></script>
+</head>
+<body id="top">
+    <header>
+        <div class="main-content">
+            <div class="row">
+                <div classs="row">
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header -->
+    <!-- start navigation -->
+    <nav class="navbar navbar-default templatemo-nav" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="{{ url_for('home')}}">
+                    <img src="/static/images/Ansys-logo.png" class="navbar-brand">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Hello,{{username}}</a></li>
+                    <li><form action="{{url_for('logout')}}"><button type="submit" style="margin-top:22px;color: #777777;font-weight: bold; border-color:white">Logout</button></form></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <table class="table table-bordered" align="center">
+            <thead>
+                <tr>
+                    <th>Date Created</th>
+                    <th>Date Merged</th>
+                    <th>Pull Request number</th>
+                    <th> Created By</th>
+                    <th> Final Status </th>
+                    <th>Pytest results</th>
+                </tr>
+            </thead>
+            {%for c in cursor%}
+            {%for workitem in c['work_item']%}
+            <tbody>
+                <tr>
+
+                    <td>{{workitem['date_created']}}</td>
+                    <td>{{workitem['date_merged']}}</td>
+
+                    <td>{{workitem['pull_req']}}</td>
+                    <td>{{c['name']}}</td>
+                    <!--Final status-->
+                    {%if workitem['final_status']=='Pending'%}
+                    <td><button type="button" class="btn btn-warning"> Pending </button></td>
+                    {% elif  workitem['final_status'] == 'Approved' %}
+                    <td><button type="button" class="btn btn-success"> Approved </button></td>
+                    {% elif  workitem['final_status'] == 'Rejected' %}
+                    <td><button type="button" class="btn btn-danger"> Rejected </button></td>
+                    {% endif %}
+
+                    <td><button style="font-size:18px"><i class="fa fa-download" style="color:lightskyblue"></i></button></td>
+                    
+                </tr>
+            </tbody>
+            {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
+
+

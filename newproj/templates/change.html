@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title> Web-app </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="/static/css/templatemo-style.css">  -->
+    <link rel="stylesheet" href="/static/css/upload_submit.css">
+    <script src="/static/js_home/jquery.js"></script>
+    <script src="/static/js_home/bootstrap.min.js"></script>
+    <script src="/static/js_home/jquery.singlePageNav.min.js"></script>
+    <script src="/static/js_home/typed.js"></script>
+    <script src="/static/js_home/custom.js"></script>
+ </head> 
+<body id="top">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div classs="row">
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header -->
+    <!-- start navigation -->
+    <nav class="navbar navbar-default templatemo-nav" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="{{ url_for('home')}}">
+                    <img src="/static/images/Ansys-logo.png" class="navbar-brand">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Hello,{{username}}</a></li>
+                    <li><form action="{{url_for('logout')}}"><button type="submit" style="margin-top:22px;color: #777777;font-weight: bold; border-color:white" >Logout</button></form></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="main-content">
+        <form class="form-basic" id="gform" action="{{ url_for('update_bp') }}">
+            <div class="table-responsive">
+                <table class="table table-bordered" align="center">
+                    <thead>
+                        <tr>
+                            <th>Pull Request number</th>
+                            <th>Windows Build</th>
+                            <th>Linux Build</th>
+                            <th>Pytest</th>
+                            <th>Ok?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{pull_req}}</td>
+                            <!--Win build-->
+                            <td>
+                                <div class="form-row">
+                                    <label>
+                                        <select name="win_build">
+                                            <option>InProgress</option>
+                                            <option>Success</option>
+                                            <option>Failed</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </td>
+                            <!--Linux build-->
+                            <td>
+                                <div class="form-row">
+                                    <label>
+                                        <select name="lin_build">
+                                            <option>InProgress</option>
+                                            <option>Success</option>
+                                            <option>Failed</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </td>
+                            <!--PyTest-->
+                            <td>
+                                <div class="form-row">
+                                    <label>
+                                        <select name="pytest">
+                                            <option>InProgress</option>
+                                            <option>Success</option>
+                                            <option>Failed</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </td>
+                            <!---Change all-->
+                            <td><button type="submit" name="pr" value="{{pull_req}}" onclick="return confirm('Are you sure?');">Done</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </form>
+        </div>
+</body>
+</html>
+
+

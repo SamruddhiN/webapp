@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title> Web-app </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="/static/css/templatemo-style.css">  -->
+    <link rel="stylesheet" href="/static/css/upload_submit.css">
+    <script src="/static/js_home/jquery.js"></script>
+    <script src="/static/js_home/bootstrap.min.js"></script>
+    <script src="/static/js_home/jquery.singlePageNav.min.js"></script>
+    <script src="/static/js_home/typed.js"></script>
+    <script src="/static/js_home/custom.js"></script>
+    <!--  <script src="/static/scripts/gs-form-handler.js"></script> -->
+    <!--<script src="/static/scripts/jquery.mb.YTPlayer.js"></script> -->
+    <!--
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+           <script>
+
+               var script_url = "https://script.google.com/a/ansys.com/macros/s/AKfycbwrOd0w0WH-_4Csr1td9aG_C88XO77sSIQGeL7gATZ8q86NQmi6/exec";
+
+         // Make an AJAX call to Google Script
+         function insert_value() {
+
+
+             var pull_req = $("gform#pull_req").val();
+           var user_story= $("#user_story").val();
+
+
+           var url = script_url+"?callback=ctrlq&pull_req="+pull_req+"&user_story="+user_story+"&action=insert";
+
+
+           var request = jQuery.ajax({
+             crossDomain: true,
+             url: url ,
+             method: "GET",
+             dataType: "jsonp"
+           });
+
+         }
+        </script>
+            <script type="text/javascript">
+           function showHide() {
+               var div = document.getElementById('thankyou_message');
+               if (div.style.display == 'none') {
+                   document.getElementById('gform').style.display = 'none'; // hide form
+                   document.getElementById('thankyou_message').style.display = 'block';
+               }
+               else {
+                   div.style.display = 'none';
+               }
+
+    }
+
+           </script>
+
+
+       -->
+
+
+</head>
+<body id="top">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div classs="row">
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header -->
+    <!-- start navigation -->
+    <nav class="navbar navbar-default templatemo-nav" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="{{ url_for('home')}}">
+                    <img src="/static/images/Ansys-logo.png" class="navbar-brand">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><form action="{{url_for('home')}}"><button type="submit" style="margin-top:22px;color: #777777;font-weight: bold; border-color:white">Home</button></form></li>
+                    <li><form action="{{url_for('logout')}}"><button type="submit" style="margin-top:22px;color: #777777;font-weight: bold; border-color:white">Logout</button></form></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- end navigation -->
+    <!--Pull request form-->
+    <div class="main-content">
+
+        <!-- You only need this form and the form-basic.css -->
+
+        <form class="form-basic" id="gform" action="{{ url_for('upload') }}" method="post">
+
+            <!-- <div class="form-title-row">
+                 <h1>Please, enter the information below.</h1>
+             </div>
+                 -->
+            <aside>
+                <p>
+                    Please use the <b><em>Information Form</em></b>
+                    to get started.
+                </p>
+            </aside>
+    
+           
+            <div class="form-row">           
+                <label>
+                    <span>Pull Request</span>
+                    <input id="pull_req" name="pull_req" type="text" data-validate="Pull Request is required." placeholder="Please, type/paste the url.">
+                    {%for alert in get_flashed_messages()%}
+                    {{alert}}
+                    {% endfor %}
+                </label>
+            </div>
+           
+
+            <div class="form-row">
+                <label>
+                    <span>Reviewer</span>
+                    <select name="reviewer">
+                        <option>Werner</option>
+                        <option>Xin</option>
+                        <option>Samruddhi</option>
+                    </select>
+                </label>
+            </div>
+
+
+
+            <div class="form-row">
+                <label>
+                    <span>User Story</span>
+                    <input type="text" name="user_story" data-validate="User Story is required." placeholder="Please, type/paste the url.">
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Solver-Type</span>
+                </label>
+                <div class="form-radio-buttons">
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>SYZ</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Near field</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Far field</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Impedence</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>Xtalk</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>DCIR</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="checkbox" checked>
+                            <span>AC</span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label><span>Design Document</span></label>
+                <div>
+                    <div class="form-attach">
+                        <input class="form-control-file" name="file[]" id="exampleInputFile" aria-describedby="fileHelp" type="file" multiple="">
+                        <small id="fileHelp" class="form-text text-muted">Please, attach if you have any design document</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Comments</span>
+                    <textarea name="textarea"></textarea>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <button class="button-success pure-button button-xlarge" formtarget="_blank">
+                    <i class="fa fa-paper-plane"></i>&nbsp;Send
+                </button>
+
+            </div>
+
+        </form>
+    </div>
+    <!-- Customise the Thankyou Message People See when they submit the form: -->
+    <div style="display:none;" id="thankyou_message">
+        <h2>
+            <em>Thank you</em> for submitting the information.
+            You can check your dashboard for the progress!
+        </h2>
+    </div>
+
+</body>
+</html>
+
+
+
